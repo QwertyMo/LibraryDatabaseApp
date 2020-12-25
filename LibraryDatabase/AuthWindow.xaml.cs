@@ -10,22 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace LibraryDatabase {
     /// <summary>
-    /// Логика взаимодействия для Window1.xaml
+    /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window {
-
-        private MySQLUtil mySQLUtil;
-        private string id;
-
-        public MainWindow(string id) {
+    public partial class AuthWindow : Window {
+        MySQLUtil mySql;
+        public AuthWindow() {
             InitializeComponent();
-            this.id = id;
-            mySQLUtil = new MySQLUtil();
-            mPanelWindow.Children.Add(new MainControl(this));
+            mySql = new MySQLUtil();
         }
 
         private void mGridTitleBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
@@ -33,7 +29,7 @@ namespace LibraryDatabase {
         }
 
         private void mButtonClose_Click(object sender, RoutedEventArgs e) {
-            mySQLUtil.closeConnection();
+            mySql.closeConnection();
             Application.Current.Shutdown();
         }
 
@@ -41,18 +37,14 @@ namespace LibraryDatabase {
             this.WindowState = WindowState.Minimized;
         }
 
-        private void mButtonHome_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
-            mPanelWindow.Children.Clear();
-            mPanelWindow.Children.Add(new MainControl(this));
+        private void mButtonLogin_Click(object sender, RoutedEventArgs e) {
+            if(!mySql.isUserFired(mTextBoxLogin.Text)) {
+                if(mySql.checkPass(mTextBoxLogin.Text, mTextBoxPassword.Password)) {
+                    mySql.closeConnection();
+                    new MainWindow(mTextBoxLogin.Text).Show();
+                    this.Close();
+                }else mTextBoxError.Text = "Неверный логин или пароль";
+            } else mTextBoxError.Text = "Сотрудник с данным идентификатором уволен";   
         }
-
-        public MySQLUtil getMySQLUtill() {
-            return mySQLUtil;
-        }
-
-        public string getID() {
-            return id;
-        }
-    }
-
 }
+    }

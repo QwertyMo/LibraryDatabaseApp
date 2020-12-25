@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="LibraryDatabase.LibraryStockControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LibraryDatabase"
+             mc:Ignorable="d" 
+             d:DesignHeight="420" d:DesignWidth="800"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextOptions.TextFormattingMode="Ideal" 
+            TextOptions.TextRenderingMode="Auto"        
+            Background="#00000000"
+            FontFamily="{DynamicResource MaterialDesignFont}"
+            TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+            TextElement.FontWeight="Regular"
+            TextElement.FontSize="13">
+    <Grid>
+        <materialDesign:Card Height="400" Width="240" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <Grid>
+                <TextBlock Text="Фильтр" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,10,0,0" FontSize="20"></TextBlock>
+                <TextBox x:Name="mTextBoxName" HorizontalAlignment="Center" Height="25" Margin="0,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"
+                     materialDesign:HintAssist.Hint="Название книги" FontSize="14"/>
+                <TextBox x:Name="mTextBoxID" HorizontalAlignment="Center" Height="25" Margin="0,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"
+                     materialDesign:HintAssist.Hint="Идентификатор" FontSize="14"/>
+                <ComboBox x:Name="mComboBoxPublishingHouse" HorizontalAlignment="Center" Margin="0,120,0,0" VerticalAlignment="Top" Width="200" materialDesign:HintAssist.Hint="Издательство" FontSize="14"/>
+                <RadioButton x:Name="mRadioAll" Content="Все книги" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,200,0,0" FontSize="14" GroupName="lib" IsChecked="True"></RadioButton>
+                <RadioButton x:Name="mRadioHand" Content="Книги на руках" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,230,0,0" FontSize="14" GroupName="lib"></RadioButton>
+                <RadioButton x:Name="mRadioAvailable" Content="Имеющиеся книги" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,260,0,0" FontSize="14" GroupName="lib"></RadioButton>
+                <RadioButton x:Name="mRadioLost" Content="Потерянные книги" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,290,0,0" FontSize="14" GroupName="lib"></RadioButton>
+                <Button x:Name="mButtonSearch" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="160" Content="Поиск" Margin="0,0,0,10" Click="mButtonSearch_Click"></Button>
+            </Grid>
+        </materialDesign:Card>
+       
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalAlignment="Left" Height="400" Margin="250,10,0,0" VerticalAlignment="Top" Width="540">
+            <ListView  x:Name="mItemControlBooks" SelectionChanged="mItemControlBooks_SelectionChanged">
+                <ListView.ItemTemplate>
+                    <DataTemplate >
+                        <materialDesign:Card Width="246" Height="160">
+                            <Grid>
+                                <Image Height="114" Width="75" HorizontalAlignment="Left" Margin="10,20,0,0" Source="{Binding IMG}"/>
+                                <TextBlock Text="{Binding NAME}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0"/>
+                                <Grid VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10" Height="120" Width="150">
+
+                                    <TextBlock Text="{Binding COPY_ID}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,15,0,0"/>
+                                    <TextBlock Text="Идентификатор" FontSize="10" Foreground="#FFB6B6B6" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0"/>
+                                    <TextBlock Text="{Binding PUBLISHING_HOUSE}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,55,0,0"/>
+                                    <TextBlock Text="Издательство" FontSize="10" Foreground="#FFB6B6B6" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,70,0,0"/>
+                                    <Grid Margin="0,0,0,10" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                                        <TextBlock Text="Наличие: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0"/>
+                                        <TextBlock Text="{Binding AVAILABLE}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="60,0,0,0"/>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </materialDesign:Card>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid VerticalAlignment="Top" Columns="2"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
