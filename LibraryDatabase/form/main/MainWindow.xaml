@@ -13,7 +13,7 @@
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"        
         Background="#00000000"
-        FontFamily="{DynamicResource MaterialDesignFont}" ResizeMode="NoResize" WindowStyle="None" Icon="recources/icon.ico" IsManipulationEnabled="True">
+        FontFamily="{DynamicResource MaterialDesignFont}" ResizeMode="NoResize" WindowStyle="None" Icon="/LibraryDatabase;component/recources/logo/icon.ico" IsManipulationEnabled="True">
     <materialDesign:Card>
         <Grid>
             <Grid x:Name="mGridTitleBar" Height="30" VerticalAlignment="Top" MouseLeftButtonDown="mGridTitleBar_MouseLeftButtonDown" Background="#FF303030">

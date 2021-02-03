@@ -16,14 +16,14 @@
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"        
         Background="#00000000"
-        FontFamily="{DynamicResource MaterialDesignFont}" ResizeMode="NoResize" WindowStyle="None" Icon="recources/icon.ico">
+        FontFamily="{DynamicResource MaterialDesignFont}" ResizeMode="NoResize" WindowStyle="None" Icon="/LibraryDatabase;component/recources/logo/icon.ico">
     <materialDesign:Card>
         <Grid>
             <Grid x:Name="mGridTitleBar" Height="30" VerticalAlignment="Top" MouseLeftButtonDown="mGridTitleBar_MouseLeftButtonDown" Background="#FF303030">
                 <Button x:Name="mButtonClose" HorizontalAlignment="Right" VerticalAlignment="Top" Height="20" Width="20" BorderBrush="Red" Margin="0,5,5,0" Background="Red" FontSize="16" BorderThickness="0,1,1,1" Padding="0" Click="mButtonClose_Click">x</Button>
                 <Button x:Name="mButtonCollapse" HorizontalAlignment="Right" VerticalAlignment="Top" Height="20" Width="20" BorderBrush="Orange" Margin="0,5,30,0" Background="Orange" FontSize="20" BorderThickness="0,1,1,1" Padding="0" Click="mButtonCollapse_Click">-</Button>
             </Grid>
-            <Image Source="recources/icon.png" Height="100" Width="100" Margin="0,30,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"></Image>
+            <Image Source="/LibraryDatabase;component/recources/logo/icon.png" Height="100" Width="100" Margin="0,30,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"></Image>
             <TextBlock Height="40" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,140,0,0" FontSize="36">Авторизация</TextBlock>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Height="36" Margin="0,210,0,0">
                 <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Width="36" Height="36" Margin="0,0,0,0" VerticalAlignment="Top">

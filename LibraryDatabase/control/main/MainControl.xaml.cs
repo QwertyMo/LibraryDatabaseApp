@@ -1,4 +1,5 @@
-﻿using LibraryDatabase.model;
+﻿using LibraryDatabase.control.readers;
+using LibraryDatabase.model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,13 +36,13 @@ namespace LibraryDatabase {
             buttons.Add(new ButtonData() {
                 name = "Библиотечный фонд",
                 description = "Просмотр имеющихся в библиотечном фонде книг, а так же управление этими книгами",
-                img = "/recources/baseline_library_books_black_18dp.png",
+                img = "/LibraryDatabase;component/recources/icon/baseline_library_books_black_18dp.png",
                 id = 0
             });
             buttons.Add(new ButtonData() {
                 name = "Читатели",
                 description = "Просмотр информации по читателям, а так же управление ими",
-                img = "/recources/baseline_users_black_18dp.png",
+                img = "/LibraryDatabase;component/recources/icon/baseline_users_black_18dp.png",
                 id = 1
             });
             /*
@@ -72,6 +73,10 @@ namespace LibraryDatabase {
                 case 0:
                     controller.mPanelWindow.Children.Clear();
                     controller.mPanelWindow.Children.Add(new LibraryStockControl(controller));
+                    break;
+                case 1:
+                    controller.mPanelWindow.Children.Clear();
+                    controller.mPanelWindow.Children.Add(new ReadersControl(controller));
                     break;
             }
            

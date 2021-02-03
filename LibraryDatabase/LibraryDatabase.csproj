@@ -85,24 +85,41 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="LibraryStockControl.xaml.cs">
+    <Compile Include="control\libraryStock\LibraryStockControl.xaml.cs">
       <DependentUpon>LibraryStockControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainControl.xaml.cs">
+    <Compile Include="control\main\MainControl.xaml.cs">
       <DependentUpon>MainControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="control\reader\ReaderControl.xaml.cs">
+      <DependentUpon>ReaderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="control\readers\ReadersControl.xaml.cs">
+      <DependentUpon>ReadersControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="form\main\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="model\Book.cs" />
+    <Compile Include="model\Forfeits.cs" />
+    <Compile Include="model\ForfeitsHistory.cs" />
     <Compile Include="model\Reader.cs" />
     <Compile Include="model\Staff.cs" />
-    <Compile Include="tools\FormUtil.cs" />
-    <Compile Include="tools\MySQLUtil.cs" />
-    <Compile Include="RootWindow.xaml.cs">
+    <Compile Include="model\TakingHistory.cs" />
+    <Compile Include="tool\FormUtil.cs" />
+    <Compile Include="tool\MySQLUtil.cs" />
+    <Compile Include="form\root\RootWindow.xaml.cs">
       <DependentUpon>RootWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="AuthWindow.xaml">
+    <Page Include="control\reader\ReaderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="control\readers\ReadersControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="form\auth\AuthWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -110,23 +127,23 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="AuthWindow.xaml.cs">
+    <Compile Include="form\auth\AuthWindow.xaml.cs">
       <DependentUpon>AuthWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="LibraryStockControl.xaml">
+    <Page Include="control\libraryStock\LibraryStockControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainControl.xaml">
+    <Page Include="control\main\MainControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="form\main\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="RootWindow.xaml">
+    <Page Include="form\root\RootWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -159,33 +176,25 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="recources\icon.png" />
+    <Resource Include="recources\logo\icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="recources\icon.ico" />
+    <Resource Include="recources\logo\icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="recources\akmJRwX3_700w_0.jpg" />
+    <Resource Include="recources\icon\baseline_library_books_black_18dp.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="recources\baseline_library_books_black_18dp.png" />
+    <Resource Include="recources\icon\baseline_users_black_18dp.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="recources\baseline_users_black_18dp.png" />
+    <Resource Include="recources\icon\baseline_book_in_black_18dp.png" />
+    <Resource Include="recources\icon\baseline_book_out_black_18dp.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="recources\baseline_book_in_black_18dp.png" />
-    <Resource Include="recources\baseline_book_out_black_18dp.png" />
+    <Resource Include="recources\icon\baseline_policy_black_18dp.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="recources\baseline_policy_black_18dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="recources\non_book.png" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

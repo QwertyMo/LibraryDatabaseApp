@@ -14,7 +14,6 @@ namespace LibraryDatabase {
 
         public MySQLUtil() {
             connection = openConnection();
-
         }
 
         private MySqlConnection openConnection() {
@@ -116,5 +115,44 @@ namespace LibraryDatabase {
                 data.Rows[0][9].ToString()
                );
         }
+
+        public List<Reader> getReaders() {
+            List<Reader> readers = new List<Reader>();
+            MySqlDataAdapter adapter = new MySqlDataAdapter(
+                "SELECT * FROM readers_info", connection);
+            DataTable data = new DataTable();
+            adapter.Fill(data);
+            foreach(DataRow i in data.Rows) {
+                bool has_books, has_forfeits;
+                adapter = new MySqlDataAdapter(
+                "SELECT * FROM unpayed_forfeits WHERE READER_ID = " + Int32.Parse(i[0].ToString()), connection);
+                DataTable forfeits = new DataTable();
+                adapter.Fill(forfeits);
+                if(forfeits.Rows.Count == 0) has_forfeits = false;
+                else has_forfeits = true;
+
+                adapter = new MySqlDataAdapter(
+                "SELECT * FROM taking_history WHERE RETURN_DATE IS NULL AND READER_ID = " + Int32.Parse(i[0].ToString()), connection);
+                DataTable books = new DataTable();
+                adapter.Fill(books);
+                if(books.Rows.Count == 0) has_books = false;
+                else has_books = true;
+                readers.Add(new Reader(
+                        Int32.Parse(i[0].ToString()),
+                        i[1].ToString(),
+                        i[2].ToString(),
+                        i[3].ToString(),
+                        i[4].ToString(),
+                        i[5].ToString(),
+                        i[6].ToString(),
+                        i[7].ToString(),
+                        i[8].ToString(),
+                        has_forfeits,
+                        has_books
+                    ));
+
+            }
+            return readers;
+        } 
     }
 }

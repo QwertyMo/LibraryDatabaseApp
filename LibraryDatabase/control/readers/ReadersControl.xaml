@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="LibraryDatabase.control.readers.ReadersControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LibraryDatabase.control.readers"
+             mc:Ignorable="d" 
+             d:DesignHeight="420" d:DesignWidth="800"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextOptions.TextFormattingMode="Ideal" 
+            TextOptions.TextRenderingMode="Auto"        
+            Background="#00000000"
+            FontFamily="{DynamicResource MaterialDesignFont}"
+            TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+            TextElement.FontWeight="Regular"
+            TextElement.FontSize="13">
+    <Grid>
+        <materialDesign:Card Height="400" Width="240" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <Grid>
+                <TextBlock Text="Фильтр" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,10,0,0" FontSize="20"></TextBlock>
+                <TextBox x:Name="mTextBoxName" HorizontalAlignment="Center" Height="25" Margin="0,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"
+                     materialDesign:HintAssist.Hint="ФИО читателя" FontSize="14"/>
+                <TextBox x:Name="mTextBoxID" HorizontalAlignment="Center" Height="25" Margin="0,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"
+                     materialDesign:HintAssist.Hint="Идентификатор" FontSize="14"/>
+                <TextBox x:Name="mTextBoxPhone" HorizontalAlignment="Center" Height="25" Margin="0,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"
+                     materialDesign:HintAssist.Hint="Телефон" FontSize="14"/>
+                <RadioButton x:Name="mRadioAll" Content="Все читатели" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,200,0,0" FontSize="14" GroupName="lib" IsChecked="True"></RadioButton>
+                <RadioButton x:Name="mRadioForfeits" Content="Неоплаченные штрафы" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,230,0,0" FontSize="14" GroupName="lib"></RadioButton>
+                <RadioButton x:Name="mRadioHand" Content="Имеет книги на руках" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,260,0,0" FontSize="14" GroupName="lib"></RadioButton>
+                <Button x:Name="mButtonSearch" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="160" Content="Поиск" Margin="0,0,0,10"></Button>
+            </Grid>
+        </materialDesign:Card>
+       
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalAlignment="Left" Height="400" Margin="250,10,0,0" VerticalAlignment="Top" Width="540">
+            <ListView  x:Name="mItemControlReaders" SelectionChanged="mItemControlReaders_SelectionChanged">
+                <ListView.ItemTemplate>
+                    <DataTemplate >
+                        <materialDesign:Card Width="246" Height="160">
+                            <Grid>
+                                <TextBlock Text="{Binding USER}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0"/>
+                                <TextBlock Text="Идентификатор: " Margin="10,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></TextBlock>
+                                <TextBlock Text="Телефон: " Margin="10,50,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></TextBlock>
+                                <TextBlock Text="Дата рождения: " Margin="10,70,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></TextBlock>
+                                <TextBlock Text="Место работы: " Margin="10,90,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></TextBlock>
+                                <TextBlock Text="Место учебы: " Margin="10,110,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></TextBlock>
+
+                                <TextBlock Text="{Binding READER_ID}" Margin="110,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></TextBlock>
+                                <TextBlock Text="{Binding PHONE}" Margin="110,50,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></TextBlock>
+                                <TextBlock Text="{Binding BIRTHDAY}" Margin="110,70,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></TextBlock>
+                                <TextBlock Text="{Binding WORK_PLACE}" Margin="110,90,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></TextBlock>
+                                <TextBlock Text="{Binding STUDY_PLACE}" Margin="110,110,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></TextBlock>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                                    <materialDesign:Chip Content="Книги на руках" Background="Orange" Margin="5" Height="24" Visibility="{Binding BOOKS}"/>
+                                    <materialDesign:Chip Content="Штрафы" Background="Red" Margin="5" Height="24" Visibility="{Binding FORFEITS}"/>
+                                </StackPanel>
+                            </Grid>
+                        </materialDesign:Card>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid VerticalAlignment="Top" Columns="2"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
